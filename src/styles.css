@@ -7,6 +7,7 @@
   --bg: #f4f6fa;
   --winner: #e9f7ef;
   --winner-ink: #087039;
+  --match-border: #0b5d2a;
 }
 
 * {
@@ -44,8 +45,8 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  padding: 8px 12px;
+  gap: 16px;
+  padding: 8px 14px;
   background: white;
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
@@ -56,21 +57,29 @@ main {
   border: 0;
   outline: 0;
   color: var(--ink);
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 900;
   letter-spacing: 1px;
   text-align: center;
   text-transform: uppercase;
+  background: transparent;
 }
 
 .toolbar {
   display: flex;
-  gap: 6px;
+  gap: 8px;
   flex-wrap: wrap;
+  align-items: center;
 }
 
-.toolbar button,
-.tabs button {
+.player-count {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  padding-right: 8px;
+}
+
+.toolbar button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -78,9 +87,9 @@ main {
   border: 1px solid var(--border);
   background: white;
   color: var(--ink);
-  border-radius: 7px;
-  padding: 6px 9px;
-  font-size: 12px;
+  border-radius: 8px;
+  padding: 7px 10px;
+  font-size: 13px;
   font-weight: 800;
   cursor: pointer;
 }
@@ -92,12 +101,27 @@ main {
 
 .tabs {
   display: flex;
-  gap: 6px;
+  gap: 7px;
   padding: 8px 12px;
   background: #fbfcfe;
   border-bottom: 1px solid var(--border);
   overflow-x: auto;
   flex-shrink: 0;
+}
+
+.tabs button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: 1px solid var(--border);
+  background: white;
+  color: var(--ink);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 16pt;
+  font-weight: 800;
+  cursor: pointer;
 }
 
 .tabs button.active {
@@ -111,8 +135,8 @@ main {
   background: white;
   border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 6px 10px;
-  font-size: 14px;
+  padding: 7px 10px;
+  font-size: 15px;
   flex-shrink: 0;
 }
 
@@ -129,10 +153,10 @@ main {
 }
 
 .bracket-screen h1 {
-  margin: 0 0 4px;
+  margin: 0 0 8px;
   text-align: center;
   color: var(--ink);
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 900;
   letter-spacing: 1px;
   flex-shrink: 0;
@@ -141,16 +165,18 @@ main {
 .bracket-canvas {
   flex: 1;
   display: grid;
-  grid-template-columns: 1fr 140px 1fr;
-  gap: 6px;
+  grid-template-columns: minmax(620px, 1fr) 220px minmax(620px, 1fr);
+  gap: 12px;
   align-items: center;
-  overflow: hidden;
+  overflow: auto;
+  transform: scale(0.92);
+  transform-origin: center top;
 }
 
 .half {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 4px;
+  grid-template-columns: 180px 160px 140px 130px;
+  gap: 8px;
   align-items: center;
 }
 
@@ -160,15 +186,15 @@ main {
 }
 
 .bracket-column.round-1 {
-  gap: 12px;
+  gap: 18px;
 }
 
 .bracket-column.round-2 {
-  gap: 46px;
+  gap: 62px;
 }
 
 .bracket-column.round-3 {
-  gap: 120px;
+  gap: 150px;
 }
 
 .bracket-column.round-4 {
@@ -177,10 +203,10 @@ main {
 
 .match-card {
   width: 100%;
-  min-width: 82px;
+  min-width: 130px;
   background: var(--card);
-  border: 1px solid #cfd6e2;
-  border-radius: 5px;
+  border: 3px solid var(--match-border);
+  border-radius: 6px;
   box-shadow: 0 1px 3px rgba(18, 33, 59, 0.08);
   position: relative;
 }
@@ -188,38 +214,38 @@ main {
 .left-half .bracket-column:not(:last-child) .match-card::after {
   content: "";
   position: absolute;
-  right: -5px;
+  right: -10px;
   top: 50%;
-  width: 5px;
-  height: 2px;
-  background: var(--line);
+  width: 10px;
+  height: 3px;
+  background: var(--match-border);
   transform: translateY(-50%);
 }
 
 .right-half .bracket-column:not(:first-child) .match-card::before {
   content: "";
   position: absolute;
-  left: -5px;
+  left: -10px;
   top: 50%;
-  width: 5px;
-  height: 2px;
-  background: var(--line);
+  width: 10px;
+  height: 3px;
+  background: var(--match-border);
   transform: translateY(-50%);
 }
 
 .match-slot {
   width: 100%;
-  min-height: 17px;
+  min-height: 38px;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   position: relative;
   border: 0;
-  border-bottom: 1px solid #edf0f5;
+  border-bottom: 2px solid #edf0f5;
   background: white;
   cursor: pointer;
   text-align: left;
-  padding: 3px 4px;
+  padding: 4px 7px;
 }
 
 .match-slot:last-child {
@@ -228,21 +254,22 @@ main {
 
 .player-number {
   color: #4d5c75;
-  font-size: 7px;
-  font-weight: 800;
-  min-width: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  min-width: 18px;
   flex-shrink: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .match-slot strong {
   color: var(--ink);
-  font-size: 7px;
-  font-weight: 800;
-  white-space: normal;
-  overflow: visible;
-  text-overflow: unset;
+  font-size: 16pt;
+  font-weight: 700;
+  font-family: Arial, Helvetica, sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   line-height: 1;
-  word-break: break-word;
   width: 100%;
 }
 
@@ -261,10 +288,10 @@ main {
 
 .winner-tag {
   position: absolute;
-  top: 1px;
-  right: 3px;
+  top: 2px;
+  right: 4px;
   color: #d00000;
-  font-size: 6px;
+  font-size: 10px;
   font-weight: 900;
   letter-spacing: 0.4px;
 }
@@ -276,40 +303,48 @@ main {
   justify-content: center;
 }
 
+.club-logo {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
 .finals-panel h2 {
-  margin: 0 0 4px;
+  margin: 0 0 5px;
   color: var(--ink);
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 900;
   letter-spacing: 1px;
 }
 
 .finals-panel .match-card {
-  width: 110px;
-  border: 2px solid var(--ink);
+  width: 160px;
+  border: 3px solid var(--match-border);
 }
 
 .champion-card {
-  width: 110px;
-  height: 32px;
-  margin-top: 5px;
-  border: 2px solid var(--ink);
-  border-radius: 5px;
+  width: 160px;
+  height: 40px;
+  margin-top: 6px;
+  border: 3px solid var(--match-border);
+  border-radius: 6px;
   background: #f7faff;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--winner-ink);
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 900;
   text-align: center;
   padding: 4px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .finals-panel p {
-  margin: 5px 0 0;
+  margin: 6px 0 0;
   color: var(--ink);
-  font-size: 7px;
+  font-size: 9px;
   font-weight: 900;
   letter-spacing: 1px;
 }
@@ -341,24 +376,24 @@ main {
 .round-grid-1,
 .round-grid-2,
 .round-grid-3 {
-  grid-template-columns: repeat(4, minmax(140px, 1fr));
+  grid-template-columns: repeat(4, minmax(220px, 1fr));
 }
 
 .round-grid-4 {
-  grid-template-columns: repeat(2, minmax(180px, 260px));
+  grid-template-columns: repeat(2, minmax(240px, 320px));
 }
 
 .round-grid-5 {
-  grid-template-columns: minmax(180px, 260px);
+  grid-template-columns: minmax(240px, 320px);
 }
 
 .round-screen .match-slot {
-  min-height: 38px;
+  min-height: 46px;
 }
 
 .round-screen .match-slot strong,
 .round-screen .player-number {
-  font-size: 12px;
+  font-size: 16pt;
 }
 
 .bulk-import-card {
